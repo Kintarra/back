@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.gek.micros.backend</groupId>
+  <artifactId>data</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>data</name>
+  <description>data</description>
+  <packaging>jar</packaging>
+
+  <properties>
+    <java.version>17</java.version>
+  </properties>
+
+  <parent>
+    <groupId>com.gek.micros</groupId>
+    <artifactId>backend</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+      <version>2.4.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>2.17.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-to-slf4j</artifactId>
+      <version>2.17.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.querydsl</groupId>
+      <artifactId>querydsl-jpa</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.querydsl</groupId>
+      <artifactId>querydsl-core</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.querydsl</groupId>
+      <artifactId>querydsl-apt</artifactId>
+      <version>5.0.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.22</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-buildpack-platform</artifactId>
+      <version>2.5.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <version>3.3.0</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.maven.doxia</groupId>
+          <artifactId>doxia-site-renderer</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-archiver</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.9.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-core</artifactId>
+      <version>3.8.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>2.1.3</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-component-annotations</artifactId>
+      <version>2.1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>23.0.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+
+      <plugin>
+        <groupId>com.mysema.maven</groupId>
+        <artifactId>apt-maven-plugin</artifactId>
+        <version>1.1.3</version>
+        <executions>
+          <execution>
+            <phase>process-sources</phase>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>target/generated-sources/querydsl</outputDirectory>
+              <processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>5.0.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <release>17</release>
+          <enablePreview>true</enablePreview>
+          <source>17</source>
+          <target>17</target>
+          <compilerArgs>--enable-preview</compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+
+
+</project>
