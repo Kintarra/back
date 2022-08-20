@@ -1,0 +1,47 @@
+alter table public.directory_entry add constraint directory_entry_object_locations_check check (
+        (directory = 'ORG_MEASURE'
+        and (description::jsonb->'objectLocations' is null or public.validate_object_locations(description::jsonb)))
+        or directory != 'ORG_MEASURE'
+        );
+
+        alter table public.directory_entry add constraint directory_entry_object_locations_check check (
+        (directory = 'ORG_MEASURE'
+        and (description::jsonb->'objectLocations' = '[]' or public.validate_object_locations(description::jsonb)))
+        or directory != 'ORG_MEASURE'
+        );
+
+        alter table public.directory_entry add constraint directory_entry_org_measure_fields_check check (
+        (type = 'ORG_MEASURE' and public.validate_json_schema('{
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+        "code": {
+        "type": "string"
+        },
+        "parentMeasure": {
+        "type": "string"
+        },
+        "objectLocations": {
+        "type": "array",
+        "items": {
+        "type": "string"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+        },
+        "objectEquipmentDeviceTypes": {
+        "type": "array",
+        "items": {
+        "type": "string"
+        },
+        "minItems": 0,
+        "uniqueItems": true
+        }
+        },
+        "additionalProperties": false,
+        "required": [
+        "code",
+        "parentMeasure"
+        ]
+        }', description::jsonb)) or type != 'ORG_MEASURE'
+        );

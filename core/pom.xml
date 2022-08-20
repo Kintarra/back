@@ -240,6 +240,7 @@
       <version>2.13.2</version>
     </dependency>
 
+    <!--   LISENCE -->
     <dependency>
       <groupId>org.apache.cxf</groupId>
       <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>

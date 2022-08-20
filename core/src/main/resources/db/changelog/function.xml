@@ -1,0 +1,29 @@
+create or replace function public.validate_object_equipment_device_type(p_input jsonb)
+        returns boolean
+        LANGUAGE sql
+        IMMUTABLE
+        AS '
+        select not exists (
+        select arr.position, arr.item_object
+        from jsonb_array_elements(p_input -> ''objectEquipmentDeviceTypes'') with ordinality arr(item_object, position)
+        where arr.item_object::text not in (
+        ''"TOUCH_PANEL"'',
+        ''"MOBILE_DEVICE"'',
+        ''"WORK_STATION"'',
+        ''"SERVER_STATION"'',
+        ''"LAPTOP"'',
+        ''"PRINTER"'',
+        ''"UPS"'',
+        ''"PLC"'',
+        ''"MEASUREMENT_DEVICE"'',
+        ''"SMART_DEVICE"'',
+        ''"MERGING_UNIT"'',
+        ''"SWITCH"'',
+        ''"ROUTER"'',
+        ''"MODEM"'',
+        ''"TIME_SERVER"'',
+        ''"KVM_SWITCH"'',
+        ''"DATA_DIODE"'',
+        ''"SECURITY_TOOL"''
+        ));
+        ';
