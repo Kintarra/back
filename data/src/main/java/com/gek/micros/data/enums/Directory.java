@@ -1,4 +1,4 @@
-package com.gek.backend.data.enums;
+package com.gek.micros.data.enums;
 
 public enum Directory implements GekCodeEnum<String> {
     HARDWARE("HW", "Hardware"),

@@ -1,13 +1,13 @@
-package com.gek.backend.data.enums;
+package com.gek.micros.data.enums;
 
-public enum Relation implements GekEnum<String> {
-    INTERNAL("INTERNAL"),
-    EXTERNAL("EXTERNAL"),
+public enum UserRole implements GekEnum<String> {
+    ROLE_ADMIN("ROLE_ADMIN"),
+    ROLE_USER("ROLE_USER"),
     ;
 
     private final String caption;
 
-    Relation(String caption) {
+    UserRole(String caption) {
         this.caption = caption;
     }
 

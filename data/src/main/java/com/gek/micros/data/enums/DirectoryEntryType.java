@@ -1,4 +1,4 @@
-package com.gek.backend.data.enums;
+package com.gek.micros.data.enums;
 
 public enum DirectoryEntryType implements GekDescendantCodeEnum<String> {
     // HARDWARE
